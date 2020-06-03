@@ -19,6 +19,17 @@ import time
 import serial
 from influxdb import InfluxDBClient
 
+#Environment specific parameters based on how you setup your database
+#Name of the InfluxDB
+dbname = "SBMS"
+#InfluxDB Measurement/Index
+dbmeasurement = "SBMS_Metrics"
+#InfluxDB instance, I use this as a tag to filter for multiple SBMS0 data feeds
+dbinstance = "SBMS0a"
+
+#BAUD rate configured on SBMS0 serial connection
+sbmsbaud = 115200
+
 # p - location of the data in the string, starting at 0!
 # s - size of the data (for example, SOC is 2)
 # d - the name of the variable in this case var sbms
@@ -35,10 +46,10 @@ def dcmp(p, s, d):
 
 #Connect to local InfluxDB and Database
 client = InfluxDBClient(host='localhost', port=8086)
-client.switch_database('SBMS')
+client.switch_database(dbname)
 
 #Open Serial connection from USB, SBMS0 must be set to same BAUD rate
-ser = serial.Serial('/dev/ttyUSB0', 115200)
+ser = serial.Serial('/dev/ttyUSB0', sbmsbaud)
 
 var_sbms = ''
 
@@ -48,7 +59,6 @@ while True:
 	if not data:
 		break
 	var_sbms = data
-
 
 #Debug output from SBMS0
 #	print(var_sbms)
@@ -189,9 +199,9 @@ while True:
 # Create DB payload
 	json_body = [
 	{
-		"measurement": "SBMS_Metrics",
+		"measurement": dbmeasurement,
 		"tags": {
-			"Name": "SBMS0a"
+			"Name": dbinstance
 		},
 		"fields": {
 			"External Temperature": External_temp,
