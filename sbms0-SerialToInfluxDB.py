@@ -9,7 +9,9 @@
   By David A. Mellis  <dam@mellis.org>
   modified 2020-05-26
   by David Buron
-   
+  further modified 2020-07-09
+  by James Buck
+  
   This example code is in the public domain.
   
 """
