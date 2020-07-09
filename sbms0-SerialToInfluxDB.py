@@ -94,15 +94,13 @@ while True:
 #    print('Cell8 = ' + str(Cell8) + '\n')
 
 # Converted based on documentation: 0 to 1449 = -45C to 99.9C
-# Converting to fahrenheit
-	Internal_temp = float((dcmp(24, 2, var_sbms)-450)/10*9/5+32)
-	Internal_temp = round(Internal_temp,3)
+	Internal_temp = float(dcmp(24, 2, var_sbms)-450)
+	Internal_temp = (round(Internal_temp,3))/10
 #    print('Internal temp = ' + str(Internal_temp) + '\n')
 
 # Converted based on documentation: 0 to 1449 = -45C to 99.9C
-# Converting to fahrenheit
-	External_temp = float((dcmp(26, 2, var_sbms)-450)/10*9/5+32)
-	External_temp = round(External_temp,3)
+	External_temp = float(dcmp(26, 2, var_sbms)-450)
+	External_temp = (round(External_temp,3))/10
 #    print('External temp = ' + str(External_temp) + '\n') 
 
 # Bat + and - sign at [28] is not compressed
@@ -146,8 +144,8 @@ while True:
 #    print('Battery voltage = ' + str(Battery_voltage) + 'V')
 
 # External load
-	External_load = float(External_load / 1000)
 	External_load = round(External_load, 3)
+	External_load = float(External_load / 1000)
 #    print('External Load current =  ' + str(External_load) + 'A')
 
 # Total PV current
@@ -215,10 +213,12 @@ while True:
 			"External Load": External_load,
 			"State of Charge": SOC,
 			"ADC2": ADC2,
-			"ADC2": ADC3,
-			"ADC2": ADC4,
-			"Heat 1": heat1,
-			"Heat 2": heat2
+			"ADC3": ADC3,
+			"ADC4": ADC4,
+                        "Cell 1": Cell1,
+                        "Cell 2": Cell2,
+                        "Cell 7": Cell7,
+                        "Cell 8": Cell8
 			}
 		}
 	]
