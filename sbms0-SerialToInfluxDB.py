@@ -215,10 +215,18 @@ while True:
 			"External Load": External_load,
 			"State of Charge": SOC,
 			"ADC2": ADC2,
-			"ADC2": ADC3,
-			"ADC2": ADC4,
+			"ADC3": ADC3,
+			"ADC4": ADC4,
 			"Heat 1": heat1,
-			"Heat 2": heat2
+			"Heat 2": heat2,
+			"Cell 1": Cell1,
+			"Cell 2": Cell2,
+			"Cell 3": Cell3,
+			"Cell 4": Cell4,
+			"Cell 5": Cell5,
+			"Cell 6": Cell6,
+			"Cell 7": Cell7,
+			"Cell 8": Cell8
 			}
 		}
 	]
