@@ -69,28 +69,28 @@ while True:
 #    print('PV SOC = ' + str(SOC) + '%')
 
 # one of cell voltage has to be cast to a float
-	Cell1 = float(dcmp(8, 2, var_sbms))
+	Cell1 = float(dcmp(8, 2, var_sbms)) / 1000
 #   print('Cell1 = ' + str(Cell1) + '\n')
 
-	Cell2 = float(dcmp(10, 2, var_sbms))
+	Cell2 = float(dcmp(10, 2, var_sbms)) / 1000
 #    print('Cell2 = ' + str(Cell2) + '\n')
 
-	Cell3 = float(dcmp(12, 2, var_sbms))
+	Cell3 = float(dcmp(12, 2, var_sbms)) / 1000
 #    print('Cell3 = ' + str(Cell3) + '\n')
 
-	Cell4 = float(dcmp(14, 2, var_sbms))
+	Cell4 = float(dcmp(14, 2, var_sbms)) / 1000
 #    print('Cell4 = ' + str(Cell4) + '\n')
 
-	Cell5 = float(dcmp(16, 2, var_sbms))
+	Cell5 = float(dcmp(16, 2, var_sbms)) / 10009
 #    print('Cell5 = ' + str(Cell5) + '\n')
 
-	Cell6 = float(dcmp(18, 2, var_sbms))
+	Cell6 = float(dcmp(18, 2, var_sbms)) / 1000
 #    print('Cell6 = ' + str(Cell6) + '\n')
 
-	Cell7 = float(dcmp(20, 2, var_sbms))
+	Cell7 = float(dcmp(20, 2, var_sbms)) / 1000
 #    print('Cell7 = ' + str(Cell7) + '\n')
 
-	Cell8 = float(dcmp(22, 2, var_sbms))
+	Cell8 = float(dcmp(22, 2, var_sbms)) / 1000
 #    print('Cell8 = ' + str(Cell8) + '\n')
 
 # Converted based on documentation: 0 to 1449 = -45C to 99.9C
@@ -141,7 +141,7 @@ while True:
 #    print('ERR_code = '+ str(ERR) + 'change to binary\n')
 
 # calculations
-	Battery_voltage = ((Cell1 +  Cell2 + Cell3 + Cell4 + Cell5 + Cell6 + Cell7 + Cell8) / 1000)
+	Battery_voltage = (Cell1 +  Cell2 + Cell3 + Cell4 + Cell5 + Cell6 + Cell7 + Cell8)
 	Battery_voltage = round(Battery_voltage, 3)
 #    print('Battery voltage = ' + str(Battery_voltage) + 'V')
 
@@ -195,14 +195,6 @@ while True:
 # Joining flags to a single string for simple output
 	separator = ", "
 	flags = separator.join(flags)
-	Cell1 = round(Cell1/1000, 3)
-	Cell2 = round(Cell2/1000, 3)
-	Cell3 = round(Cell3/1000, 3)
-	Cell4 = round(Cell4/1000, 3)
-	Cell5 = round(Cell5/1000, 3)
-	Cell6 = round(Cell6/1000, 3)
-	Cell7 = round(Cell7/1000, 3)
-	Cell8 = round(Cell8/1000, 3)
 
 # Create DB payload
 	json_body = [
