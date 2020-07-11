@@ -219,14 +219,14 @@ while True:
 			"ADC4": ADC4,
 			"Heat 1": heat1,
 			"Heat 2": heat2,
-			"Cell 1": Cell1,
-			"Cell 2": Cell2,
-			"Cell 3": Cell3,
-			"Cell 4": Cell4,
-			"Cell 5": Cell5,
-			"Cell 6": Cell6,
-			"Cell 7": Cell7,
-			"Cell 8": Cell8
+			"Cell 1": round(Cell1/1000, 3),
+			"Cell 2": round(Cell2/1000, 3),
+			"Cell 3": round(Cell3/1000, 3),
+			"Cell 4": round(Cell4/1000, 3),
+			"Cell 5": round(Cell5/1000, 3),
+			"Cell 6": round(Cell6/1000, 3),
+			"Cell 7": round(Cell7/1000, 3),
+			"Cell 8": round(Cell8/1000, 3)
 			}
 		}
 	]
