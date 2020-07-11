@@ -72,25 +72,25 @@ while True:
 	Cell1 = float(dcmp(8, 2, var_sbms))
 #   print('Cell1 = ' + str(Cell1) + '\n')
 
-	Cell2 = dcmp(10, 2, var_sbms)
+	Cell2 = float(dcmp(10, 2, var_sbms))
 #    print('Cell2 = ' + str(Cell2) + '\n')
 
-	Cell3 = dcmp(12, 2, var_sbms)
+	Cell3 = float(dcmp(12, 2, var_sbms))
 #    print('Cell3 = ' + str(Cell3) + '\n')
 
-	Cell4 = dcmp(14, 2, var_sbms)
+	Cell4 = float(dcmp(14, 2, var_sbms))
 #    print('Cell4 = ' + str(Cell4) + '\n')
 
-	Cell5 = dcmp(16, 2, var_sbms)
+	Cell5 = float(dcmp(16, 2, var_sbms))
 #    print('Cell5 = ' + str(Cell5) + '\n')
 
-	Cell6 = dcmp(18, 2, var_sbms)
+	Cell6 = float(dcmp(18, 2, var_sbms))
 #    print('Cell6 = ' + str(Cell6) + '\n')
 
-	Cell7 = dcmp(20, 2, var_sbms)
+	Cell7 = float(dcmp(20, 2, var_sbms))
 #    print('Cell7 = ' + str(Cell7) + '\n')
 
-	Cell8 = dcmp(22, 2, var_sbms)
+	Cell8 = float(dcmp(22, 2, var_sbms))
 #    print('Cell8 = ' + str(Cell8) + '\n')
 
 # Converted based on documentation: 0 to 1449 = -45C to 99.9C
