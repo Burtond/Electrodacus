@@ -186,6 +186,13 @@ while True:
     separator = ", "
     flags = separator.join(flags)
 
+# Creating Cell Delta values
+    voltages = [Cell1,Cell2,Cell3,Cell4,Cell5,Cell6,Cell7,Cell8]
+    maxv = max(voltages)
+    minv = min(voltages)
+    delta = maxv-minv
+#    print('Cell Voltage Delta = ' + str(delta) + 'V' + '\n')
+
 # Create DB payload
     json_body = [
     {
@@ -216,7 +223,8 @@ while True:
             "Cell 5": Cell5,
             "Cell 6": Cell6,
             "Cell 7": Cell7,
-            "Cell 8": Cell8
+            "Cell 8": Cell8,
+            "Cell Delta": delta
             }
         }
     ]
