@@ -1,0 +1,1314 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_SMBS_DATA",
+      "label": "SMBS_Data",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar Gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.6.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 22,
+      "interval": "",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watth"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"Battery Voltage\" * \"PV Total Current\" / 120 FROM \"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Battery Voltage"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  " / 100"
+                ],
+                "type": "math"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "PV Total Current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  " / 100"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "PV Power",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 18,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 3,
+            "mappings": [],
+            "max": 3.7,
+            "min": 2,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 3
+                },
+                {
+                  "color": "green",
+                  "value": 3.3
+                }
+              ]
+            },
+            "unit": "volt"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "showUnfilled": true
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "alias": "Cell1",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 1\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell2",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 2\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell3",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 3\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell4",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 4\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell5",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 5\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell6",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 6\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell7",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 7\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Cell8",
+          "groupBy": [],
+          "hide": false,
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT \"Cell 8\" FROM \"autogen\".\"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Cell Voltages",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": "${DS_SMBS_DATA}",
+      "description": "Difference between highest and lowest cell voltages",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 3,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "volt"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Cell Delta"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Cell Delta",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_SMBS_DATA}",
+      "format": "dateTimeAsIso",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 14,
+        "y": 8
+      },
+      "id": 12,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.6.1",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"Battery Voltage\" FROM \"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a')",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Battery Voltage"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Time of last data point",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "150%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "last_time"
+    },
+    {
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 16
+      },
+      "id": 6,
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 50
+                },
+                {
+                  "color": "green",
+                  "value": 75
+                }
+              ]
+            },
+            "title": "State of Charge",
+            "unit": "percent"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "auto",
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "State of Charge"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "SOC",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 7,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "displayMode": "basic",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "title": "",
+            "unit": "amp"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "showUnfilled": false
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "alias": "Load",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"PV Total Current\")-last(\"Battery Current\") FROM \"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "PV Total Current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "Battery Current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "PV Current",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"PV Total Current\")-last(\"Battery Current\") FROM \"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "PV Total Current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "Battery Current",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"PV Total Current\")-last(\"External Load\") FROM \"SBMS_Metrics\" WHERE (\"Name\" = 'SBMS0a') AND $timeFilter",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Battery Current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Power",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 15,
+        "y": 16
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Monitor Flags"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Monitor Flags",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_SMBS_DATA}",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 15,
+        "y": 23
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "title": "",
+            "unit": "fahrenheit"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "alias": "Internal Temperature",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Internal Temperature"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Internal Temperature",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_SMBS_DATA}",
+      "decimals": 2,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 15,
+        "x": 0,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 4,
+      "interval": "",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 4,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "SOC",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Batt Volt",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT last(\"Battery Voltage\") FROM \"SBMS_Metrics\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Battery Voltage"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        },
+        {
+          "alias": "SOC",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT last(\"Battery Voltage\") FROM \"SBMS_Metrics\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "State of Charge"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Battery Levels",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "volt",
+          "label": "",
+          "logBase": 1,
+          "max": "28",
+          "min": "23",
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_SMBS_DATA}",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 15,
+        "x": 0,
+        "y": 31
+      },
+      "hiddenSeries": false,
+      "id": 16,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "PV Current",
+          "groupBy": [],
+          "measurement": "SBMS_Metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "PV Total Current"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "Name",
+              "operator": "=",
+              "value": "SBMS0a"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "PV Current",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "amp",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [
+    "sbms",
+    "sbms0",
+    "solar",
+    "electrodacus",
+    "battery"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "SBMS",
+  "uid": "Flc7SdzRz",
+  "version": 22
+}
