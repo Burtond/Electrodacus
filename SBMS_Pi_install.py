@@ -27,7 +27,7 @@ os.system("dpkg -i grafana_7.1.1_armhf.deb")
 os.system("systemctl enable grafana-server")
 os.system("systemctl start grafana-server")
 
-os.system("sudo wget --no-check-certificate --content-disposition 'https://github.com/Burtond/Electrodacus/blob/master/sbms0-SerialToInfluxDB.py' -P '/home/SBMS0/'")
+os.system("sudo wget --no-check-certificate --content-disposition 'https://raw.githubusercontent.com/Burtond/Electrodacus/master/sbms0-SerialToInfluxDB.py' -P '/home/SBMS0/'")
 
 f = open("/etc/systemd/system/SBMS-Logger.service","w")
 f.write('[Unit]\n')
