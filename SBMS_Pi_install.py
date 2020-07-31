@@ -48,7 +48,11 @@ f.close()
 os.system("systemctl enable SBMS-Logger.service")
 os.system("systemctl start SBMS-Logger.service")
 
-hostname = socket.gethostname()
-ipaddress = socket.gethostbyname(hostname)
+def get_ip_address():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    return s.getsockname()[0]
+
+ipaddress = get_ip_address()
 print "Login to https://" + ipaddress + ":3000"
 print "Username = admin, password = admin"
