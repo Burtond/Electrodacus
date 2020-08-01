@@ -189,7 +189,7 @@ while True:
 # Creating Cell Delta values
     voltages = [Cell1,Cell2,Cell3,Cell4,Cell5,Cell6,Cell7,Cell8]
     maxv = max(voltages)
-    minv = min(voltages)
+    minv = min(i for i in voltages if i > 0)
     delta = maxv-minv
 #    print('Cell Voltage Delta = ' + str(delta) + 'V' + '\n')
 
