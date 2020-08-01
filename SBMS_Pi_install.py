@@ -12,6 +12,7 @@ os.system("apt install influxdb")
 os.system("systemctl unmask influxdb")
 os.system("systemctl enable influxdb")
 os.system("systemctl start influxdb")
+os.system("sudo apt install influxdb-client")
 os.system("influx -execute 'CREATE DATABASE SBMS'")
 
 os.system("apt-get -y install python-influxdb")
