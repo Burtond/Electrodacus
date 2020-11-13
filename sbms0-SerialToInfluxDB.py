@@ -45,7 +45,6 @@ while True:
 #Open Serial connection from USB, SBMS0 must be set to same BAUD rate
 	if x==0:
 		ser = serial.Serial('/dev/ttyUSB0', 115200)
-
 		data =  ser.readline()
 		if not data:
 			break
