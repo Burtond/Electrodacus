@@ -41,9 +41,9 @@ var_sbms = ''
 
 # Receiving Data
 while True:
-    x=os.path.exists('/dev/ttyUSB0')
+	x=os.path.exists('/dev/ttyUSB0')
 #Open Serial connection from USB, SBMS0 must be set to same BAUD rate
-	if x==0:
+	if(x==1):
 		ser = serial.Serial('/dev/ttyUSB0', 115200)
 		data =  ser.readline()
 		if not data:
