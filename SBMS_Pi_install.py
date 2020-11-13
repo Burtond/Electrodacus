@@ -44,5 +44,5 @@ def get_ip_address():
 ipaddress = get_ip_address()
 os.system("curl --user admin:admin \"http://" + ipaddress + ":3000/api/datasources\" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{\"name\":\"SBMS_Data\",\"isDefault\":true ,\"type\":\"influxdb\",\"url\":\"http://localhost:8086\",\"database\":\"SBMS\",\"access\":\"proxy\",\"basicAuth\":false}'")
 
-print "Login to https://" + ipaddress + ":3000"
+print "Login to http://" + ipaddress + ":3000"
 print "Username = admin, password = admin"
