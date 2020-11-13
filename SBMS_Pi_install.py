@@ -31,7 +31,7 @@ os.system("systemctl start grafana-server")
 
 os.system("sudo wget --no-check-certificate --content-disposition 'https://raw.githubusercontent.com/Burtond/Electrodacus/master/sbms0-SerialToInfluxDB.py' -P '/home/SBMS0/'")
 
-os.system("sudo wget --no-check-certificate --content-disposition 'https://raw.githubusercontent.com/Burtond/Electrodacus/master/SBMS-Logger.service' -P '/etc/systemd/system/SBMS-Logger.service'")
+os.system("sudo wget --no-check-certificate --content-disposition 'https://raw.githubusercontent.com/Burtond/Electrodacus/master/SBMS-Logger.service' -P '/etc/systemd/system/'")
 
 os.system("systemctl enable SBMS-Logger.service")
 os.system("systemctl start SBMS-Logger.service")
