@@ -8,8 +8,8 @@ os.system("sudo apt upgrade -y")
 os.system("sudo apt install influxdb-client")
 os.system("influx -execute 'CREATE DATABASE SBMS'")
 
-os.system("sudo apt-get -y install python-influxdb")
-os.system("sudo apt-get install python-serial")
+os.system("pip install influxdb")
+os.system("sudo apt-get install python3-serial")
 
 # Download SBMS Serial Data collector script
 os.system("sudo wget --no-check-certificate --content-disposition 'https://raw.githubusercontent.com/Burtond/Electrodacus/master/sbms0-SerialToInfluxDB.py' -P '/home/SBMS0/'")
