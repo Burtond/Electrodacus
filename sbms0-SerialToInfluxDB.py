@@ -29,7 +29,7 @@ def dcmp(p, s, d):
 
     for z in range(s):
 # Java script: xx = xx + ((d.charCodeAt((p + s - 1) -z) -35) * Math.pow(91, z$))
-        wanted_ascii_character = ord(d[(p + s - 1) - z])
+        wanted_ascii_character = ord(chr(d[(p + s - 1) - z]))
         xx = xx + ((wanted_ascii_character - 35) * pow(91, z))
 
     return xx
