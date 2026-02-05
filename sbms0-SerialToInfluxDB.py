@@ -226,7 +226,9 @@ while True:
 				"Cell 6": Cell6,
 				"Cell 7": Cell7,
 				"Cell 8": Cell8,
-				"Cell Delta": delta
+				"Cell Delta": delta,
+				"Cell Max Voltage": maxv,
+				"Cell Min Voltage": minv
 				}
 			}
 		]
