@@ -227,6 +227,8 @@ while True:
 				"Cell 7": Cell7,
 				"Cell 8": Cell8,
 				"Cell Delta": delta,
+				"PVWatts": pvwatts,
+				"Load Watts": loadwatts,
 				"Cell Max Voltage": maxv,
 				"Cell Min Voltage": minv
 				}
