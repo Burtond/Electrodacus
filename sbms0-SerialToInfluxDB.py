@@ -193,8 +193,11 @@ while True:
 		maxv = max(voltages)
 		minv = min(i for i in voltages if i > 0)
 		delta = maxv-minv
-	#    print('Cell Voltage Delta = ' + str(delta) + 'V' + '\n')
-
+	#   print('Cell Voltage Delta = ' + str(delta) + 'V' + '\n')
+# Calculating Watts from PV Current and voltage
+        pvwatts = PV_total_current * Battery_voltage
+# Calculating load watts
+        loadwatts = (PV_total_current - Batt_current)*Battery_voltage
 	# Create DB payload
 		json_body = [
 		{
